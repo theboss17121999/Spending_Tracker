@@ -16,6 +16,7 @@ public class Category extends javax.swing.JFrame {
     /**
      * Creates new form Category
      */
+    
     public Category() {
         initComponents();
         getEntries();
@@ -96,6 +97,11 @@ public class Category extends javax.swing.JFrame {
 
         tCategory.setColumns(20);
         tCategory.setRows(5);
+        tCategory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tCategoryKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tCategory);
 
         jButton1.setText("Add");
@@ -220,7 +226,7 @@ public class Category extends javax.swing.JFrame {
                 String st = (String)jTable1.getValueAt(ri,1);
                 try{
                     DataBase.DataBaseConnect.st.executeUpdate("delete from category_info where category = ('"+st+"')");
-                    JOptionPane.showMessageDialog(null,  "Category : "+st+" deleted successfully");
+                    JOptionPane.showMessageDialog(null,  "Category : "+st+"\n deleted successfully");
                     getEntries();
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "An error occurred: ");
@@ -236,6 +242,10 @@ public class Category extends javax.swing.JFrame {
           
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tCategoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tCategoryKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tCategoryKeyPressed
+ 
     /**
      * @param args the command line arguments
      */
