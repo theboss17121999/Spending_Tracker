@@ -20,7 +20,7 @@ public class SpendingTracker extends javax.swing.JFrame {
         initComponents();
         displayCategory();
         getEntries();
-        date.setSelectableDateRange(null,new java.util.Date());
+        date.setSelectableDateRange(null, new java.util.Date());
         date.setDate(new java.util.Date());
     }
     
@@ -130,6 +130,11 @@ public class SpendingTracker extends javax.swing.JFrame {
         });
 
         categoryBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        categoryBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryBoxActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Refresh");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -147,8 +152,8 @@ public class SpendingTracker extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +324,6 @@ public class SpendingTracker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         new Category().setVisible(true);
         displayCategory();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -391,6 +395,10 @@ public class SpendingTracker extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void categoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryBoxActionPerformed
 
     
     private void getEntries(){

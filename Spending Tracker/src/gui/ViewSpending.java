@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
-import java.sql.*;
 
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -67,7 +67,7 @@ public class ViewSpending extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        categoryBox = new javax.swing.JComboBox<>();
+        category = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -316,14 +316,7 @@ public class ViewSpending extends javax.swing.JFrame {
 
         jLabel2.setText("Category :");
 
-        categoryBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        categoryBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        categoryBox.setEditor(null);
-        categoryBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryBoxActionPerformed(evt);
-            }
-        });
+        category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
 
         javax.swing.GroupLayout panel5Layout = new javax.swing.GroupLayout(panel5);
         panel5.setLayout(panel5Layout);
@@ -351,7 +344,7 @@ public class ViewSpending extends javax.swing.JFrame {
                                         .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(d3, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                                             .addComponent(d4, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-                                            .addComponent(categoryBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addComponent(category, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(36, 36, 36))
                             .addGroup(panel5Layout.createSequentialGroup()
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,7 +373,7 @@ public class ViewSpending extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(categoryBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
@@ -415,10 +408,10 @@ public class ViewSpending extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void displayCategory(){
         try{
-            categoryBox.removeAllItems();
+            category.removeAllItems();
             ResultSet rs = DataBase.DataBaseConnect.st.executeQuery("Select * from Category_info");
             while(rs.next()){
-                categoryBox.addItem(rs.getString("category"));
+                category.addItem(rs.getString("category"));
             }
         }
         catch(Exception e){
@@ -453,17 +446,13 @@ public class ViewSpending extends javax.swing.JFrame {
         d2.setSelectableDateRange(d1.getDate(),new java.util.Date());
     }//GEN-LAST:event_d1PropertyChange
 
-    private void categoryBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_categoryBoxActionPerformed
-
     private void d3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_d3PropertyChange
         d4.setSelectableDateRange(d3.getDate(),new java.util.Date());
     }//GEN-LAST:event_d3PropertyChange
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try{
-            String c = (String)categoryBox.getSelectedItem();
+            String c = (String)category.getSelectedItem();
             int amount=0;
             java.sql.Date dt1 = new java.sql.Date(d3.getDate().getTime());
             java.sql.Date dt2 = new java.sql.Date(d4.getDate().getTime()); 
@@ -488,40 +477,42 @@ public class ViewSpending extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewSpending().setVisible(true);
-            }
-        });
-    }
+    
+// ------------------------------- So that it would start from SpendingTracker
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ViewSpending.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ViewSpending().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> categoryBox;
+    private javax.swing.JComboBox<String> category;
     private com.toedter.calendar.JDateChooser d1;
     private com.toedter.calendar.JDateChooser d2;
     private com.toedter.calendar.JDateChooser d3;
